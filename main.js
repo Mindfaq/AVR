@@ -1,20 +1,10 @@
-// Create an AudioContext
-let audioContext;
-
-// Use only the higher frequency
-let frequency = 880; // A5
-
-// Use only the green color
-let color = 'green';
-
-// Array to store the results
-let results = [];
-
-// Specify the number of experiments for each type
-let numExperiments = 6;
-
-// Experiment plan
-let experimentPlan = [];
+// Global variables
+window.audioContext = null;
+window.frequency = 880; // A5
+window.color = 'green';
+window.results = [];
+window.numExperiments = 2;
+window.experimentPlan = [];
 
 // Populate the experiment plan
 for(let i = 0; i < numExperiments; i++) {
@@ -51,16 +41,9 @@ function showColor(color) {
   document.body.style.backgroundColor = color;
 }
 
-// Function to start the experiment
 function startExperiment() {
-  // If there are no more tests left in the plan, don't start a new experiment
-  if (experimentPlan.length === 0) {
-    console.log('Experiment completed.');
-    downloadButton.style.display = 'block';
-    nameInput.style.display = 'block';
-    return;
-  }
   document.getElementById('startText').style.display = 'none';
+
   // Get the next test from the experiment plan
   let nextTest = experimentPlan.pop();
 
@@ -68,7 +51,7 @@ function startExperiment() {
   audioContext = new window.AudioContext();
 
   // Wait a random amount of time between 1 and 3 seconds, then either play the sound or show the color
-  setTimeout(function() {
+  setTimeout(function () {
     let startTime = Date.now();
 
     if (nextTest.type === 'sound') {
@@ -78,7 +61,7 @@ function startExperiment() {
     }
 
     // When the user presses the spacebar, record their reaction time and save the result
-    window.onkeydown = function(event) {
+    window.onkeydown = function (event) {
       if (event.key === ' ') {
         let endTime = Date.now();
         let reactionTime = endTime - startTime;
@@ -87,25 +70,41 @@ function startExperiment() {
 
         // Save the result
         results.push({
-            type: nextTest.type,
-            frequency: nextTest.type === 'sound' ? nextTest.frequency : 'N/A',
-            color: nextTest.type === 'visual' ? nextTest.color : 'N/A',
-            reactionTime: reactionTime
+          type: nextTest.type,
+          frequency: nextTest.type === 'sound' ? nextTest.frequency : 'N/A',
+          color: nextTest.type === 'visual' ? nextTest.color : 'N/A',
+          reactionTime: reactionTime,
         });
 
         // Reset the background color
         if (nextTest.type === 'visual') {
-            document.body.style.backgroundColor = '';
+          document.body.style.backgroundColor = '';
         }
+        if (experimentPlan.length === 0) {
+          console.log('Experiment completed.');
+          document.getElementById('nextExperimentText').style.display = 'none'; // Hide the text
+          downloadButton.style.display = 'block';
+          nameInput.style.display = 'block';
+          return;
+        }
+        // Show the text for the next experiment
+        document.getElementById('nextExperimentText').style.display = 'block';
 
         // Re-add the event listener to start the next test
         window.onkeydown = startOnSpace;
-        }
+      }
     };
-    }, 1000 + Math.random() * 2000);
+
+    // Hide the text before starting the experiment
+    document.getElementById('nextExperimentText').style.display = 'none';
+
+  }, 1000 + Math.random() * 2000);
 }
+
+
+
           
-// ...
+
 
 // Function to download the results as a CSV file
 function downloadResults() {
@@ -128,8 +127,10 @@ downloadButton.onclick = downloadResults;
 // Function to start the experiment when the spacebar is pressed
 function startOnSpace(event) {
   if (event.key === ' ') {
+    document.getElementById('nextExperimentText').style.display = 'none';
     startExperiment();
     // Remove the event handler so the experiment doesn't restart until it's finished
+
     window.onkeydown = null;
   }
 }
@@ -148,7 +149,6 @@ function resultsToCSV(results) {
     return csvContent;
 }
 
-// Function to download the results as a CSV file
 function downloadResults() {
   let name = document.getElementById('nameInput').value;
   let csvContent = resultsToCSV(results);
@@ -161,6 +161,10 @@ function downloadResults() {
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
-}
 
-  
+  // Redirect to the original page after the CSV download
+    // Delayed redirection to the original page
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1400); // Adjust the delay duration (in milliseconds) as needed
+}
