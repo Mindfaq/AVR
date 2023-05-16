@@ -8,6 +8,7 @@ window.experimentPlan = [];
 window.id = null;
 window.alcohol = null;
 window.handPreference = null;
+window.runCounter = 1
 
 
 // Populate the experiment plan
@@ -88,7 +89,7 @@ function startExperiment() {
         let reactionTime = endTime - startTime;
 
         console.log(`Reaction time for ${nextTest.type}: ${reactionTime}ms`);
-
+        
         // Save the result
         results.push({
           id: id,
@@ -98,9 +99,10 @@ function startExperiment() {
           frequency: nextTest.type === 'sound' ? nextTest.frequency : 'N/A',
           color: nextTest.type === 'visual' ? nextTest.color : 'N/A',
           reactionTime: reactionTime,
+          run: runCounter,
         });
         
-
+        runCounter += 1
         // Reset the background color
         if (nextTest.type === 'visual') {
           document.body.style.backgroundColor = '';
@@ -171,10 +173,10 @@ window.onkeydown = startOnSpace;
 
 // Function to convert the results array into a CSV format
 function resultsToCSV(results) {
-  let csvContent = 'ID,Alcohol,Hand,Type of test,Sound frequency,Color,Reaction time\n';
+  let csvContent = 'ID,run,Alcohol,Hand,Type of test,Sound frequency,Color,Reaction time\n';
 
   results.forEach(result => {
-    csvContent += `${result.id},${result.alcohol},${result.handPreference},${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
+    csvContent += `${result.id},${result.run},${result.alcohol},${result.handPreference},${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
   });
 
   return csvContent;
