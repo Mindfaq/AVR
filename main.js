@@ -47,7 +47,7 @@ function showColor(color) {
 }
 
 function startExperiment() {
-
+  experiment = document.getElementById('experiment').value;
   id = document.getElementById('idInput').value;
   alcohol = document.getElementById('alcoholInput').value;
   handPreference = document.getElementById('handInput').value;
@@ -59,7 +59,7 @@ function startExperiment() {
   }
   document.getElementById('startText').style.display = 'none';
 
-  
+  document.getElementById('experiment').style.display = 'none';
   document.getElementById('idInput').style.display = 'none';
   document.getElementById('alcoholInput').style.display = 'none';
   document.getElementById('handInput').style.display = 'none';
@@ -93,6 +93,7 @@ function startExperiment() {
         // Save the result
         results.push({
           id: id,
+          exp: experiment,
           alcohol: alcohol,
           handPreference: handPreference,
           type: nextTest.type,
@@ -112,7 +113,8 @@ function startExperiment() {
           document.getElementById('nextExperimentText').style.display = 'none'; // Hide the text
           downloadButton.style.display = 'block';
           nameInput.style.display = 'block';
-
+          
+          document.getElementById('experiment').value = "";
           document.getElementById('idInput').value = '';
           document.getElementById('alcoholInput').value = '';
           document.getElementById('handInput').value = '';
@@ -173,10 +175,10 @@ window.onkeydown = startOnSpace;
 
 // Function to convert the results array into a CSV format
 function resultsToCSV(results) {
-  let csvContent = 'ID,run,Alcohol,Hand,Type of test,Sound frequency,Color,Reaction time\n';
+  let csvContent = 'ID,experiment,run,Alcohol,Hand,Type of test,Sound frequency,Color,Reaction time\n';
 
   results.forEach(result => {
-    csvContent += `${result.id},${result.run},${result.alcohol},${result.handPreference},${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
+    csvContent += `${result.id},${result.exp},${result.run},${result.alcohol},${result.handPreference},${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
   });
 
   return csvContent;

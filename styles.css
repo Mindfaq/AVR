@@ -76,7 +76,8 @@ body {
 
 #idInput,
 #alcoholInput,
-#handInput {
+#handInput,
+#experiment {
   display: block;
   width: 100%;
   padding: 10px;
@@ -88,19 +89,22 @@ body {
 
 #idInput::placeholder,
 #alcoholInput::placeholder,
-#handInput::placeholder {
+#handInput::placeholder,
+#experiment::placeholder {
   color: #999;
 }
 
 #idInput:focus,
 #alcoholInput:focus,
-#handInput:focus {
+#handInput:focus,
+#experiment:focus {
   outline: none;
   border-color: #0b9202;
 }
 
 #idInput.error,
 #alcoholInput.error,
-#handInput.error {
+#handInput.error,
+#experiment.error {
   border-color: red;
 }
