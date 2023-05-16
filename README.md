@@ -6,7 +6,7 @@ This web-based experiment tests and compares the reaction times to visual and au
 
 The experiment presents a series of tests, half of which are visual and half are audio. The visual tests change the background color of the webpage to green, while the audio tests play a sound at a frequency of 880 Hz (A5).
 
-Each test begins after a random delay between 1 and 3 seconds. Participants must press the spacebar as soon as they perceive the stimulus, and the program records their reaction time. At the end of the experiment, participants can download their results as a CSV file.
+Each test begins after a random delay between 1 and 3 seconds. Participants should press the spacebar as soon as they perceive the stimulus, and the program records their reaction time. At the end of the experiment, participants can download their results as a CSV file.
 
 ## Setup
 
