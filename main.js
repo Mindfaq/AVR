@@ -201,7 +201,7 @@ function downloadResults() {
   // Redirect to the original page after the CSV download
     // Delayed redirection to the original page
     setTimeout(() => {
-      window.location.href = 'experiment.html';
+      window.location.href = 'index.html';
     }, 1400); // Adjust the delay duration (in milliseconds) as needed
 }
 
