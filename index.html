@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Reaction Test</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Experiment Introduction</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 
+</head>
+<body>
+  <pre id="ascii-canvas"></pre>
+  <div class="container">
+    <h1>Welcome to the Experiment</h1>
+    <p>This experiment is designed to test your reaction time to different stimuli. It consists of a series of sound and visual tests.</p>
+    <h2>Instructions:</h2>
+    <ol>
+      <li>Fill in the following information:</li>
+      <ul>
+        <li>ID: Enter your identification number, arbitrary unique number</li>
+        <li>Alcohol Consumption: Enter 1 if you have consumed one unit of alcohol</li>
+        <li>Hand Preference: Enter 0 if you are using your left hand, or 1 if you are using your right hand.</li>
+      </ul>
+      <li>Click the "Start" button to begin the experiment.</li>
+      <li>During each test, you will be presented with either a sound or a visual stimulus.</li>
+      <li>When you see or hear the stimulus, press the spacebar as quickly as possible.</li>
+      <li>Your reaction time will be recorded and displayed on the screen.</li>
+      <li>After completing all tests, click the "Download Results" button to save your results as a CSV file.</li>
+    </ol>
+    <div class="start-button">
+      <button id="startButton">Start</button>
+    </div>
+  </div>
 
-  <body>
-    <div id="centered-button">
-
-        <p id="startText">Press space to start the experiment</p>
-        <input id="experiment" type="text" placeholder="Enter your experiment number" />
-        <input id="idInput" type="text" placeholder="Enter your ID" />
-        <input id="alcoholInput" type="text" placeholder="Alcohol consumption (0 or 1)" />
-        <input id="handInput" type="text" placeholder="Hand preference left or right (0 or 1)" />
-        
-        <p id="nextExperimentText" style="display: none;">Press space for next trial</p>
-        <input id="nameInput" type="text" placeholder="Enter your name" />
-        <button id="downloadButton">Download Result</button>
-      </div>
-      
-      
-    <script src="main.js"></script>
-    <script src="matrix.js"></script>
-  </body>
+  <script src="info.js"></script>
+  <script src="matrix.js"></script>
+</body>
 </html>
