@@ -1,4 +1,4 @@
-# Visual and Audio Stimuli Reaction Time Experiment
+# Audio-Visual Reaction Time Experiment
 
 This web-based experiment tests and compares the reaction times to visual and audio stimuli. The experiment is built with JavaScript and uses the Web Audio API for the audio stimuli.
 
