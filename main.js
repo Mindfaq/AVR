@@ -171,7 +171,7 @@ window.onkeydown = startOnSpace;
 
 // Function to convert the results array into a CSV format
 function resultsToCSV(results) {
-  let csvContent = 'ID,Alcohol,Hand preference,Type of test,Sound frequency,Color,Reaction time\n';
+  let csvContent = 'ID,Alcohol,Hand,Type of test,Sound frequency,Color,Reaction time\n';
 
   results.forEach(result => {
     csvContent += `${result.id},${result.alcohol},${result.handPreference},${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
