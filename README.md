@@ -27,4 +27,4 @@ You can adjust the number of tests, the frequency of the sound, or the color use
 
 ## License
 
-Free to use and alter
+Feel free to use and alter
