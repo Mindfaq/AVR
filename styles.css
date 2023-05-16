@@ -1,76 +1,106 @@
 body {
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: black;
-  }
-  
-  
-  .matrix {
-    position: absolute;
-    color: green;
-    top: -10%;
-    animation: fall linear 30s infinite;
-  }
-  
-  @keyframes fall {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(200vh);
-    }
-  }
-  
-  
-  
-  
-  #centered-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  #downloadButton {
-    display: none;
-    font-size: 16px;
-    padding: 12px 24px;
-    color: #fff;
-    background-color: green;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #downloadButton:hover {
-    background-color: #0b9202;
-  }
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: black;
+}
 
-  #nameInput {
-    display: none;
-    font-size: 16px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.matrix {
+  position: absolute;
+  color: green;
+  top: -10%;
+  animation: fall linear 30s infinite;
+  z-index: -1; /* Ensure the matrix falls behind everything */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
   }
-  #startText,
-  #nextExperimentText {
-    font-size: 36px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-    transition: color 0.3s ease;
-    color: white;
+  100% {
+    transform: translateY(200vh);
   }
-  #startText:hover,
-  #nextExperimentText:hover {
-    color: green;
-    cursor: default;
-  }
+}
+
+#centered-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#downloadButton {
+  display: none;
+  font-size: 16px;
+  padding: 12px 24px;
+  color: #fff;
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#downloadButton:hover {
+  background-color: #0b9202;
+}
+
+#nameInput {
+  display: none;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#startText,
+#nextExperimentText {
+  font-size: 36px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+  color: white;
+}
+
+#startText:hover,
+#nextExperimentText:hover {
+  color: green;
+  cursor: default;
+}
+
+#idInput,
+#alcoholInput,
+#handInput {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+#idInput::placeholder,
+#alcoholInput::placeholder,
+#handInput::placeholder {
+  color: #999;
+}
+
+#idInput:focus,
+#alcoholInput:focus,
+#handInput:focus {
+  outline: none;
+  border-color: #0b9202;
+}
+
+#idInput.error,
+#alcoholInput.error,
+#handInput.error {
+  border-color: red;
+}

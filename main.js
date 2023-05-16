@@ -5,6 +5,10 @@ window.color = 'green';
 window.results = [];
 window.numExperiments = 2;
 window.experimentPlan = [];
+window.id = null;
+window.alcohol = null;
+window.handPreference = null;
+
 
 // Populate the experiment plan
 for(let i = 0; i < numExperiments; i++) {
@@ -42,7 +46,22 @@ function showColor(color) {
 }
 
 function startExperiment() {
+
+  id = document.getElementById('idInput').value;
+  alcohol = document.getElementById('alcoholInput').value;
+  handPreference = document.getElementById('handInput').value;
+  // Check if all fields are filled
+  if (idInput.value.trim() === '' || alcoholInput.value.trim() === '' || handInput.value.trim() === '') {
+    // Display an error message or perform any necessary actions
+    alert('Please fill in all fields before starting the experiment.');
+    return;
+  }
   document.getElementById('startText').style.display = 'none';
+
+  
+  document.getElementById('idInput').style.display = 'none';
+  document.getElementById('alcoholInput').style.display = 'none';
+  document.getElementById('handInput').style.display = 'none';
 
   // Get the next test from the experiment plan
   let nextTest = experimentPlan.pop();
@@ -62,7 +81,9 @@ function startExperiment() {
 
     // When the user presses the spacebar, record their reaction time and save the result
     window.onkeydown = function (event) {
+      
       if (event.key === ' ') {
+
         let endTime = Date.now();
         let reactionTime = endTime - startTime;
 
@@ -70,11 +91,15 @@ function startExperiment() {
 
         // Save the result
         results.push({
+          id: id,
+          alcohol: alcohol,
+          handPreference: handPreference,
           type: nextTest.type,
           frequency: nextTest.type === 'sound' ? nextTest.frequency : 'N/A',
           color: nextTest.type === 'visual' ? nextTest.color : 'N/A',
           reactionTime: reactionTime,
         });
+        
 
         // Reset the background color
         if (nextTest.type === 'visual') {
@@ -85,6 +110,10 @@ function startExperiment() {
           document.getElementById('nextExperimentText').style.display = 'none'; // Hide the text
           downloadButton.style.display = 'block';
           nameInput.style.display = 'block';
+
+          document.getElementById('idInput').value = '';
+          document.getElementById('alcoholInput').value = '';
+          document.getElementById('handInput').value = '';
           return;
         }
         // Show the text for the next experiment
@@ -135,19 +164,22 @@ function startOnSpace(event) {
   }
 }
 
+
 window.onkeydown = startOnSpace;
+
 
 
 // Function to convert the results array into a CSV format
 function resultsToCSV(results) {
-    let csvContent = 'Type of test,Sound frequency,Color,Reaction time\n';
+  let csvContent = 'ID,Alcohol,Hand preference,Type of test,Sound frequency,Color,Reaction time\n';
 
-    results.forEach(result => {
-        csvContent += `${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
-    });
+  results.forEach(result => {
+    csvContent += `${result.id},${result.alcohol},${result.handPreference},${result.type},${result.frequency},${result.color},${result.reactionTime}\n`;
+  });
 
-    return csvContent;
+  return csvContent;
 }
+
 
 function downloadResults() {
   let name = document.getElementById('nameInput').value;
