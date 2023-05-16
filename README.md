@@ -27,4 +27,4 @@ You can adjust the number of tests, the frequency of the sound, or the color use
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+Free to use and alter
