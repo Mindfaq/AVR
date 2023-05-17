@@ -2,7 +2,7 @@
 
 This web-based experiment tests and compares the reaction times to visual and audio stimuli. The experiment is built with JavaScript and uses the Web Audio API for the audio stimuli.
 
-https://mindfaq.github.io/AVR/
+Online test: https://mindfaq.github.io/AVR/
 
 ## Overview
 
