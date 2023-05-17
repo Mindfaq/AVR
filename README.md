@@ -2,6 +2,8 @@
 
 This web-based experiment tests and compares the reaction times to visual and audio stimuli. The experiment is built with JavaScript and uses the Web Audio API for the audio stimuli.
 
+Online test: https://mindfaq.github.io/AVR/
+
 ## Overview
 
 The experiment presents a series of tests, half of which are visual and half are audio. The visual tests change the background color of the webpage to green, while the audio tests play a sound at a frequency of 880 Hz (A5).
